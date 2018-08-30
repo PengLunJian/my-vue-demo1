@@ -1,8 +1,25 @@
 'use strict'
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
-
+const os = require('os')
 const path = require('path')
+
+const getIPAddress = () => {
+  let IPv4 = 'localhost'
+  const interfaces = os.getNetworkInterfaces()
+  for (let name in interfaces) {
+    let face = interfaces[name]
+    for (let i = 0; i < face.length; i++) {
+      let alias = face[i]
+      if ('IPv4' === alias.family
+        && '127.0.0.1' !== IPv4.address
+        && !alias.internal) {
+        IPv4 = alias.address
+      }
+    }
+  }
+  return IPv4
+}
 
 module.exports = {
   dev: {
@@ -13,9 +30,9 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: getIPAddress(), // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
