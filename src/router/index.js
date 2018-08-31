@@ -5,17 +5,20 @@ import Main from '../containers/Main/Main.vue'
 
 Vue.use(Router)
 
+const routes = [
+  {
+    path: '/',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/Main',
+    name: 'Main',
+    component: Main
+  }
+]
+
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/Main',
-      name: 'Main',
-      component: Main
-    }
-  ]
+  mode: 'history',
+  routes: routes
 })

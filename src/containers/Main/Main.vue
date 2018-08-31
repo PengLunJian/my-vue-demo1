@@ -1,55 +1,49 @@
 <template>
-  <div class="login">
-    <div class="content">
-      <div class="header"></div>
-      <div class="body">
-        <div class="form-group">
-          <label class="form-label" for="username"></label>
-          <input type="text" class="form-input" id="username" placeholder="please enter your username"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="password"></label>
-          <input type="text" class="form-input" id="password" placeholder="please enter your password"/>
-        </div>
-        <div class="form-group">
-          <input type="radio" class="form-radio" id="radio"/>
-          <label class="form-label" for="radio">Remember the password</label>
-        </div>
-      </div>
-      <div class="footer">
-        <button class="btn btn-login">Login</button>
-      </div>
+  <div class="main">
+    <div class="side">
+      <Navigation :isOpen="isOpen" />
     </div>
+    <div class="header">
+      <button class="nav-trigger" @click="this.showNavigation">
+        <i class="border"></i>
+        <i class="border"></i>
+        <i class="border"></i>
+      </button>
+    </div>
+    <div class="context"></div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import Navigation from '../../components/navigation.vue'
   export default{
-    name: 'Main'
+    name: 'Main',
+    components: {
+      Navigation
+    },
+    data () {
+      return {
+        isOpen: false
+      }
+    },
+    methods: {
+      showNavigation: function () {
+        this.isOpen = true
+      }
+    }
   }
 </script>
 
 <style type="text/less">
-  .login {
+  .main {
+    height: 100%;
+    position: relative;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("../../assets/images/main_bg.jpg");
     .content {
 
-    }
-    .header {
-
-    }
-    .body {
-
-    }
-    .footer {
-
-    }
-    .form-group {
-      .form-input {
-
-      }
-      .form-label {
-
-      }
     }
   }
 </style>
